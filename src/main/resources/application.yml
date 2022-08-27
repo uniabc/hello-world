@@ -1,0 +1,39 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 50MB
+  #数据源配置
+  datasource:
+    #说明： 如果没有使用useSSL=true, 会报红警告
+    url: jdbc:mysql://localhost:3306/reggie?useUnicode=true&characterEncoding=utf-8&useSSL=true
+    username: root
+    password: hsp
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #durid 配置
+    druid:
+      #filters: stat,wall,slf4j #所有开启的功能
+      stat-view-servlet: #监控页配置
+        enabled: true
+        login-username: cxfcxf
+        login-password: 666666
+        resetEnable: false
+      web-stat-filter: #web 监控
+        enabled: true
+        urlPattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+      filter:
+        stat: #sql 监控
+          slow-sql-millis:
+            1000logSlowSql: true
+          enabled: true
+        wall: #防火墙
+          enabled: true
+          config:
+          drop-table-allow: false
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  port: 80
